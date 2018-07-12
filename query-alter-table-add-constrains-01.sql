@@ -27,10 +27,6 @@ ALTER TABLE COMPRAS MODIFY (OBSERVACOES VARCHAR2(35) NOT NULL);
 INSERT INTO COMPRAS (ID, VALOR, DATA, OBSERVACOES, RECEBIDO) VALUES (ID_SEQ.NEXTVAL, 100.0, '02-JUL-2010', NULL, '1');
 -- Relatório de erros : ORA-01400: não é possível inserir NULL em ("SYS"."COMPRAS"."OBSERVACOES")
 
---Especificando um valor default para um campo específico da tabela.
---Para o campo recebido, o valor defautl será '0', quando no insert não por atribuido nenhum valor
-ALTER TABLE COMPRAS MODIFY (RECEBIDO CHAR DEFAULT '0' CHECK (RECEBIDO IN (0,1)));
-
 -- Realizando um insert para testar a alteração do campo defautl: como não foi passado um valor para o campo 'recebido
 -- o banco usou o valor default que especificamos por default ou seja o valor '0'.
 INSERT INTO COMPRAS (ID, VALOR, DATA, OBSERVACOES) VALUES (ID_SEQ.NEXTVAL, 189.76, '19-01-2009', 'UMA COMPRA QUALQUER');
