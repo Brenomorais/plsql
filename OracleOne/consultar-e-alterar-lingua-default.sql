@@ -1,4 +1,4 @@
--- Query consultar qual nls_lang (linguagem-idioma) está sendo usada pelo Oracle,
+-- Query para consultar qual nls_lang (linguagem-idioma) está sendo usada pelo Oracle,
 -- idiomamportante saber essa informação, para trabalhar com datas.
 
 show parameter nls_lang;
@@ -12,6 +12,6 @@ Alter Session Set NLS_TERRITORY = 'BRAZIL';
 Alter Session Set NLS_NUMERIC_CHARACTERS=',.';
 ALTER SESSION SET NLS_DATE_FORMAT = 'DD/MM/YYYY HH24:MI:SS';
 
---Query que permite verificar todos as linguagem aceitas pelo Oracle
+--Query que permite verificar todos as nls disponivei no Oracle.
 select * from v$nls_parameters;
 
