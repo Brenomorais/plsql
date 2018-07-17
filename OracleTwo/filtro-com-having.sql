@@ -71,5 +71,13 @@ select count(a.id) as quantidade, c.nome from curso c
 group by c.nome
 having count(a.id) < 3;
 
+-- Exiba o nome do curso e a quantidade de seções que existe nele. Mostre só cursos com mais de 3 seções
+
+select c.nome, count(s.id) as QuantidadeSecoes from secao s
+    join curso c on c.id =  s.curso_id 
+group by c.nome having count(s.id) > 3;
+
+
+
     
 
