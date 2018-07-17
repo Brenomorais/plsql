@@ -46,7 +46,32 @@ select c.nome from curso c where exists (select m.id from matricula m where m.cu
 -- Query cursos que não tem nenhum aluno matriculado
 select c.nome from curso c where not exists (select m.id from matricula m where m.curso_id = c.id);
 
+--Consulte todos os alunos que não tiveram nenhuma matricula no ultimo ano, usando a instrução 'exists'.
+select  a.nome from aluno a where not exists(
+    select m.id from matricula m where m.aluno_id = a.id 
+    and m.data > (select sysdate - interval '1' year from dual));
 
+-- É possível fazer a mesma consulta sem usar EXISTS? Sim, é possivel utilizando o Lef join, mas tambem tem outra maneira que é
+-- selecionando os alunos e contando o numero de matricula para o ultimo ano, se o resultado da contagem for '0', é porque
+-- o aluno não se matriculou no último ano.
+
+select a.nome from aluno a where (
+    select count(m.id) from matricula m where m.aluno_id = a.id and 
+    m.data > (select sysdate - interval '1' year from dual)) = 0;
+
+-- Busque todos os alunos que não tiveram nenhuma matrícula no ano de 2015, usando a instrução EXISTS.
+
+--Selecionando a data atual e depois subtraimos  1 ano na data atual, com isso temos a data do ano anterior.
+select sysdate - interval '1' year from dual;
+
+select a.id, a.nome from aluno a where not exists(
+    select m.id from matricula m where m.aluno_id = a.id 
+    and m.data > (select sysdate - interval '3' year from dual));
+
+    
+
+    
+   
 
 
 
